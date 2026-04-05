@@ -111,7 +111,7 @@ npm run dev
 
 ---
 
-## 🇬🇧 English
+## EN English
 
 This project is a mini application built with Next.js App Router.  
 It includes authentication UI, form validation, and product management features.
