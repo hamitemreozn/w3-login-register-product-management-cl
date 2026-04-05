@@ -1,36 +1,229 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Login / Register / Ürün Yönetimi Projesi
 
-## Getting Started
+---
 
-First, run the development server:
+## 🇹🇷 Türkçe
+
+Bu proje, Next.js App Router kullanılarak geliştirilmiş bir mini uygulamadır.  
+Kullanıcı giriş sistemi, form doğrulama ve ürün yönetimi işlemlerini içerir.
+
+---
+
+### 🚀 Kullanılan Teknolojiler
+
+- Next.js (App Router)
+- React
+- PrimeReact (UI Bileşenleri)
+- React Hook Form
+- Zod (Form doğrulama)
+- TanStack Query (Veri çekme ve mutation işlemleri)
+
+---
+
+### 📂 Sayfalar
+
+#### 🔐 /login
+
+- Kullanıcı adı ve şifre ile giriş formu
+- React Hook Form + Zod ile doğrulama
+- POST isteği:  
+  https://dummyjson.com/auth/login
+- Token `localStorage`’a kaydedilir
+- Başarılı girişte `/products` sayfasına yönlendirme
+- Hatalı girişte ekranda hata mesajı gösterilir
+
+---
+
+#### 📝 /register
+
+- Kullanıcı adı, email, şifre ve şifre tekrar alanları
+- Doğrulamalar:
+  - Kullanıcı adı: en az 3 karakter
+  - Email: geçerli format
+  - Şifre: en az 6 karakter
+  - Şifre tekrar: şifre ile aynı olmalı
+- Submit sonrası:
+  - Veriler console’a yazdırılır
+  - Toast ile başarı mesajı gösterilir
+  - Form resetlenir
+
+---
+
+#### 📦 /products
+
+- Ürün listesi şu adresten çekilir:  
+  https://dummyjson.com/products
+- PrimeReact DataTable ile listelenir
+
+##### Gösterilen kolonlar
+
+- ID
+- Ürün başlığı
+- Fiyat
+
+---
+
+#### ➕ Ürün Ekleme Formu
+
+- Ürün başlığı → zorunlu
+- Ürün fiyatı → zorunlu, sayı ve 0’dan büyük olmalı
+- POST isteği:  
+  https://dummyjson.com/products/add
+
+Başarılı işlem sonrası:
+
+- Toast bildirimi gösterilir
+- `invalidateQueries` ile liste güncellenir
+- Form resetlenir
+
+---
+
+### 🔁 Veri Akışı
+
+- `useQuery` → ürün listesini çeker
+- `useMutation` → yeni ürün ekler
+- `invalidateQueries` → veri güncellenmesini sağlar
+
+---
+
+### ⚠️ Not
+
+Kullanılan API (`dummyjson.com`) mock bir servistir.  
+Eklenen ürünler kalıcı olarak veri tabanına yazılmaz.
+
+---
+
+### 🛠️ Kurulum
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### 📌 Özellikler
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Zod ile güçlü form doğrulama
+- React Hook Form ile performanslı form yönetimi
+- TanStack Query ile veri yönetimi
+- PrimeReact ile modern UI bileşenleri
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🇬🇧 English
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project is a mini application built with Next.js App Router.  
+It includes authentication UI, form validation, and product management features.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+### 🚀 Technologies
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Next.js (App Router)
+- React
+- PrimeReact (UI Components)
+- React Hook Form
+- Zod (Validation)
+- TanStack Query (Data Fetching & Mutations)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+### 📂 Pages
+
+#### 🔐 /login
+
+- Username & password login form
+- Validation with React Hook Form + Zod
+- POST request:  
+  https://dummyjson.com/auth/login
+- Token is saved to `localStorage`
+- Redirect to `/products` on success
+- Displays error message on failure
+
+---
+
+#### 📝 /register
+
+- Fields:
+  - Username
+  - Email
+  - Password
+  - Confirm Password
+- Validations:
+  - Username: min 3 characters
+  - Email: valid format
+  - Password: min 6 characters
+  - Confirm Password must match
+- On submit:
+  - Logs data to console
+  - Shows success Toast
+  - Resets form
+
+---
+
+#### 📦 /products
+
+- Fetch products from:  
+  https://dummyjson.com/products
+- Display using PrimeReact DataTable
+
+##### Columns
+
+- ID
+- Title
+- Price
+
+---
+
+#### ➕ Add Product Form
+
+- Title → required
+- Price → required, must be a number greater than 0
+- POST request:  
+  https://dummyjson.com/products/add
+
+On success:
+
+- Shows Toast notification
+- Invalidates queries
+- Resets form
+
+---
+
+### 🔁 Data Flow
+
+- `useQuery` → fetch product list
+- `useMutation` → add product
+- `invalidateQueries` → refresh data
+
+---
+
+### ⚠️ Note
+
+The API (`dummyjson.com`) is a mock service.  
+Added products may not persist after refresh.
+
+---
+
+### 🛠️ Setup
+
+```bash
+npm install
+npm run dev
+```
+
+---
+
+### 📌 Features
+
+- Form validation with Zod
+- Efficient form handling with React Hook Form
+- Data management with TanStack Query
+- Modern UI with PrimeReact
+
+---
+
+## 👤 Author
+
+Hamit
